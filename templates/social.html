@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+     <div class="row social-page justify-content-center" style="margin-top: 10%;">
+        <div class="col-md-6 col-md-offset-3">
+            <form method="post" action="{% url 'social' %}">
+                {% csrf_token %}
+                {% if form.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ form.errors | safe }}
+                    </div>
+                {% endif %}
+                <input name="id" readonly hidden value="{{ form.id.value }}" />
+                <fieldset class="form-group">
+                    <label>个人网站</label>
+                    <input class="form-control form-control-lg" type="text" name="website" value="{{ form.website.value }}" placeholder="个人网站">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>GitHub</label>
+                    <input class="form-control form-control-lg" type="text" name="github" value="{{ form.github.value }}" placeholder="GitHub">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Youtube</label>
+                    <input class="form-control form-control-lg" type="text" name="youtube" value="{{ form.youtube.value }}" placeholder="Youtube">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Bilibili</label>
+                    <input class="form-control form-control-lg" type="text" name="bili_bili" value="{{ form.bili_bili.value }}" placeholder="Bilibili">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>QQ</label>
+                    <input class="form-control form-control-lg" type="text" name="qq" value="{{ form.qq.value }}" placeholder="QQ">
+                </fieldset>
+                <fieldset class="form-group">
+                    <input class="btn btn-primary btn-lg btn-block" type="submit" value="更新" />
+                </fieldset>
+            </form>
+        </div>
+    </div>
+{% endblock %}

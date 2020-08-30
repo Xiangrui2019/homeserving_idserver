@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load redirect_uri_module %}
+
+{% block content %}
+    <div class="card">
+      <div class="card-header">
+          登出中........
+      </div>
+      <div class="card-body">
+          <h1>正在登出, 请稍后.....</h1>
+          <p>如果卡在这个页面不动, 请刷新页面, 或者联系我 <a href="mailto:xiangrui@aiursoft.com">我的邮箱</a>.</p>
+          <p>吃狗粮啦!</p>
+          <img src="/static/images/dog_p0.jpg" />
+          <img src="/static/images/dog_p1.jpg" />
+      </div>
+    </div>
+
+    <iframe class="local" src="/accounts/signout/" style="display: none"></iframe>
+    {% for client in clients %}
+        {% for redirect_uri in client.redirect_uris %}
+            <iframe src="{{ redirect_uri|redirect_uri_to_logout_uri }}"
+                    style="display: none"></iframe>
+        {% endfor %}
+    {% endfor %}
+
+    <script type="application/javascript" src="/static/js/logout.js"></script>
+    <script type="application/javascript">
+        window.next = "{{ next }}";
+    </script>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row authorize-page justify-content-center" style="margin-top: 20%;">
+        <div class="col-md-6 col-md-offset-3">
+            <h2>请求获取您的权限</h2>
+            <p class="lead">客户端 <i>{{ client.name }}</i> 请求您授权给本应用一定的权限.</p>
+            <form method="post" action="{% url 'oidc_provider:authorize' %}">
+                {% csrf_token %}
+                {{ hidden_inputs }}
+                <ul>
+                    {% for scope in scopes %}
+                        <li><strong>{{ scope.name }}</strong> <br><i class="text-muted">{{ scope.description }}</i></li>
+                    {% endfor %}
+                </ul>
+                <br>
+                <input type="submit" class="btn btn-primary btn-block btn-lg" name="allow"  value="同意" />
+                <input type="submit" class="btn btn-secondary btn-block" value="拒绝" />
+            </form>
+        </div>
+    </div>
+{% endblock %}

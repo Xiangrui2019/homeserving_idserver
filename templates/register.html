@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load null_or_data %}
+{% load redirect_uri_module %}
+
+{% block content %}
+    <div class="row register-page justify-content-center" style="margin-top: 25%;">
+        <div class="col-md-6 col-md-offset-3">
+            <form method="post" action="{% url 'register' %}" novalidate>
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}">
+                {% if form.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ form.errors | safe }}
+                    </div>
+                {% endif %}
+                <fieldset class="form-group">
+                    <input class="form-control form-control-lg" type="text" name="username" value="{{ form.username.value | null_or_data }}" placeholder="用户名">
+                </fieldset>
+                <fieldset class="form-group">
+                    <input class="form-control form-control-lg" type="password" name="password" placeholder="密码">
+                </fieldset>
+                <fieldset class="form-group">
+                    <input class="form-control form-control-lg" type="password" name="password_confirm" placeholder="确认密码">
+                </fieldset>
+                <fieldset class="form-group">
+                    <input class="btn btn-primary btn-lg btn-block" type="submit" value="注册" />
+                    <a class="btn btn-info btn-lg btn-block" href="/accounts/login?next={{ next | redirect_uri_to_home }}">已有账号, 去登陆</a>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+{% endblock %}

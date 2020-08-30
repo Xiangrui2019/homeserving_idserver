@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load null_or_data %}
+
+{% block content %}
+     <div class="row profile-page justify-content-center" style="margin-top: 10%;">
+        <div class="col-md-6 col-md-offset-3">
+            <form method="post" action="{% url 'profile' %}">
+                {% csrf_token %}
+                {% if form.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ form.errors | safe }}
+                    </div>
+                {% endif %}
+                <input name="id" readonly hidden value="{{ form.id.value }}" />
+                <fieldset class="form-group">
+                    <label>用户名</label>
+                    <input class="form-control form-control-lg" type="text" name="username" value="{{ form.username.value }}" readonly placeholder="用户名">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>昵称</label>
+                    <input class="form-control form-control-lg" type="text" name="nick_name" value="{{ form.nick_name.value | null_or_data }}" placeholder="昵称">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>个人简介</label>
+                    <textarea rows="4" class="form-control form-control-lg" name="bio" placeholder="个人简介">{{ form.bio.value }}</textarea>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>性别</label>
+                    <input type="text" class="form-control form-control-lg" name="gender" placeholder="性别" value="{{ form.gender.value }}" />
+                    <small id="genderHelp" class="form-text text-muted">请输入男/女/未知.</small>
+                </fieldset>
+                <fieldset class="form-group">
+                    <input class="btn btn-primary btn-lg btn-block" type="submit" value="更新" />
+                </fieldset>
+            </form>
+        </div>
+    </div>
+{% endblock %}

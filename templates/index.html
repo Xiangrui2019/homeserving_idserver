@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="welcome-block px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">
+            <img width="80px" height="80px" class="icon" alt="Logo" src="/static/images/favicon.PNG">
+            <br>
+            HomeServing's IDServer</h1>
+        <p class="lead">欢迎来到 WeihanLi Account Center</p>
+    </div>
+
+    <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">登录</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title">
+                    <span class="oi oi-lock-locked" title="登录" aria-hidden="true"></span>
+                </h1>
+                <a class="btn btn-lg btn-block btn-primary" href="/accounts/login">登录</a>
+            </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">发现文档</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title">
+                    <span class="oi oi-monitor" title="发现文档" aria-hidden="true"></span>
+                </h1>
+                <a href="/.well-known/openid-configuration" class="btn btn-lg btn-block btn-outline-primary">发现文档</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

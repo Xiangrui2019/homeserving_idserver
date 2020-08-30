@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load image_or_avatar %}
+
+{% block content %}
+    <div class="row avatar-page justify-content-center" style="margin-top: 10%;">
+        <div class="col-md-6 col-md-offset-3">
+            <form method="post" action="{% url 'avatar' %}" enctype='multipart/form-data'>
+                {% csrf_token %}
+                {% if form.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ form.errors | safe }}
+                    </div>
+                {% endif %}
+                <input name="id" readonly hidden value="{{ form.id.value }}" />
+                <fieldset class="form-group">
+                    <label>头像</label><br/>
+                    <img width="80px" height="80px" src="{{ avatar.url | image_or_d }}" />
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>头像上传</label>
+                    <input type="file" class="form-control-file" name="avatar" />
+                </fieldset>
+                <fieldset class="form-group">
+                    <input class="btn btn-primary btn-lg btn-block" type="submit" value="更新" />
+                </fieldset>
+            </form>
+        </div>
+    </div>
+{% endblock %}
