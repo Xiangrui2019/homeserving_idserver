@@ -134,7 +134,6 @@ SITE_URL = 'http://localhost:8000'
 OIDC_SESSION_MANAGEMENT_ENABLE = True
 OIDC_USERINFO = "id.oidc_provider_settings.userinfo"
 
-
 OSS_ACCESS_KEY_ID = "LTAI4GAh3umjxxSf43PrXKcD"
 OSS_ACCESS_KEY_SECRET = "AJ6kPwcylxcN4JenzcsKcQ8iZPTlx0"
 OSS_ENDPOINT = "oss-accelerate.aliyuncs.com"
