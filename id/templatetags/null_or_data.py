@@ -7,6 +7,5 @@ register = template.Library()
 def null_or_data(value):
     if value and hasattr(value, 'url'):
         return value.url
-    else:
-        return "https://xiangrui.aiur.site/favicon.PNG"
 
+    return "https://xiangrui.aiur.site/favicon.PNG"
