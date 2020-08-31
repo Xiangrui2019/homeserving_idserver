@@ -170,7 +170,7 @@ class AvatarView(View):
         form = AvatarForm()
         context = {
             "form": form,
-            "avatar": user_profile.avatar
+            "avatar": user_profile.avatar if user_profile.avatar != None else None
         }
         return render(request, "avatar.html", context)
 
@@ -181,7 +181,7 @@ class AvatarView(View):
         context = {}
         user_obj = User.objects.filter(username=request.user.username).first()
         user_profile = UserProfile.objects.filter(user=user_obj).first()
-        context["avatar"] = user_profile.avatar
+        context["avatar"] = user_profile.avatar if user_profile.avatar != None else None
         if form.is_valid():
             data = form.cleaned_data
             if data != "":
