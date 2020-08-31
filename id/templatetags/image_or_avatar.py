@@ -8,4 +8,4 @@ def image_or_d(value):
     if value == None:
         return "https://xiangrui.aiur.site/favicon.PNG"
     else:
-        return value
+        return value.url
