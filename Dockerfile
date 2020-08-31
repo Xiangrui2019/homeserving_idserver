@@ -2,6 +2,7 @@ FROM python:latest
 
 WORKDIR /app
 EXPOSE 80
+ENV PYTHONUNBUFFERED 1
 RUN pip install pipenv
 COPY . .
 RUN pipenv install
