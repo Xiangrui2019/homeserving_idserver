@@ -5,7 +5,7 @@ register = template.Library()
 
 @register.filter
 def image_or_d(value):
-    if value == None:
-        return "https://xiangrui.aiur.site/favicon.PNG"
-    else:
+    if value and hasattr(value, 'url'):
         return value.url
+
+    return "https://xiangrui.aiur.site/favicon.PNG"
